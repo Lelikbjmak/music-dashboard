@@ -1,0 +1,4 @@
+# ----- S3 -----
+aws:
+  s3:
+    bucket-name: music-file-bucket
