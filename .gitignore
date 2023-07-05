@@ -1,0 +1,26 @@
+# Project exclude paths
+/api-gateway/target/
+/authentication-microservice/target/
+/discovery/target/
+/jwt-common/target/
+/jwt-common-test/target/
+/liquibase-migration/target/
+/music-enricher-microservice/target/
+/sound-file-microservice/target/
+/spotify-common/target/
+/track-microservice/target/
+/user-microservice/target/
+
+/api-gateway/.mvn
+/authentication-microservice/.mvn
+/discovery/.mvn
+/jwt-common/.mvn
+/jwt-common-test/.mvn
+/liquibase-migration/.mvn
+/music-enricher-microservice/.mvn
+/sound-file-microservice/.mvn
+/spotify-common/.mvn
+/track-microservice/.mvn
+/user-microservice/.mvn
+
+/.idea
