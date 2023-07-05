@@ -1,0 +1,5 @@
+# ----- MONGO -----
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/lelikbjmak
