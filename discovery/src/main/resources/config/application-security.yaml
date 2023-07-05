@@ -1,0 +1,7 @@
+# ----- SECURITY -----
+password-encoder:
+  salt-length: 17
+  hash-length: 32
+  parallelism: 1
+  memory: 23552
+  iterations: 2
