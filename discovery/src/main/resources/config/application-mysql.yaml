@@ -1,0 +1,22 @@
+# ----- MY_SQL -----
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    username: root
+    password: qwertY_1351530
+    driver-class-name: com.mysql.cj.jdbc.Driver

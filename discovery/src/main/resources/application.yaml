@@ -1,0 +1,25 @@
+# ----- Properties -----
+spring:
+  profiles:
+    active: native
+  output:
+    ansi:
+      enabled: ALWAYS
+  application:
+    name: discovery-server
+  cloud:
+    config:
+      override-none: true
+      server:
+        native:
+          search-locations: classpath:/config
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

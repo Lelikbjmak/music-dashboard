@@ -1,0 +1,6 @@
+# ----- SQS -----
+aws:
+  sqs:
+    queue-name:
+      - music-file-queue
+      - music-data-queue

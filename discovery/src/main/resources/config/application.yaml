@@ -1,0 +1,5 @@
+# ----- DEFAULT -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS

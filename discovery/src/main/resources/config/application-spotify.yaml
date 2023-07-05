@@ -1,0 +1,6 @@
+# ----- SPOTIFY -----
+spotify:
+  token-type: Bearer
+  grant-type: client_credentials
+  client-id: 723518c2fb6a4e51a5f61219a5eccbd7
+  client-secret: 63e030797b704e10a848ae5fee09c5ca
