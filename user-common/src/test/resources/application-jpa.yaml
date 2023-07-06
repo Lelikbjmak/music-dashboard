@@ -1,0 +1,29 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:tc:mysql:8.0.33:///song-dashboard-api-test?TC_INITSCRIPT=sql/init-schema.sql
+    username: root
+    password: qwertY_1351530
+
+logging:
+  level:
+    org:
+      testcontainers: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+user:
+  username: test
+  email: test@gmail.com
