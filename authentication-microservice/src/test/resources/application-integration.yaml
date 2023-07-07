@@ -1,0 +1,47 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:tc:mysql:8.0.33:///song-dashboard-api-test?TC_INITSCRIPT=sql/init-schema.sql
+    username: root
+    password: qwertY_1351530
+  liquibase:
+    enabled: false
+
+logging:
+  level:
+    org:
+      testcontainers: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+jwt:
+  secret: 2B4D6251655468576D5A7134743777217A25432A462D4A404E635266556A586E
+  validity: 7_200_000
+
+password-encoder:
+  salt-length: 17
+  hash-length: 32
+  parallelism: 1
+  memory: 23552
+  iterations: 2
+
+eureka:
+  client:
+    enabled: false
+
+user:
+  username: test
+  password: 1111
+
