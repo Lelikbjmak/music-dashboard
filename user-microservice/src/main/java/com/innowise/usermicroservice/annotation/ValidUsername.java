@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Pattern;
 
 import java.lang.annotation.*;
 
-import static com.innowise.usermicroservice.util.ApplicationConstant.USERNAME_REGEX_PATTERN;
+import static com.innowise.usermicroservice.constant.ConstraintConstants.USERNAME_REGEX_PATTERN;
 
 @Documented
 @Target(value = ElementType.FIELD)

@@ -2,12 +2,11 @@ package com.innowise.usermicroservice.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 import java.lang.annotation.*;
 
-import static com.innowise.usermicroservice.util.ApplicationConstant.PASSWORD_REGEX_PATTERN;
+import static com.innowise.usermicroservice.constant.ConstraintConstants.PASSWORD_REGEX_PATTERN;
 
 @Documented
 @Constraint(validatedBy = {})
