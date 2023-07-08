@@ -3,7 +3,7 @@ package com.innowise.usermicroservice.mapper;
 
 import com.innowise.usercommon.domain.Role;
 import com.innowise.usercommon.domain.domainenum.RoleEnum;
-import com.innowise.usermicroservice.repository.RoleRepository;
+import com.innowise.usercommon.repository.RoleRepository;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.springframework.beans.factory.annotation.Autowired;
