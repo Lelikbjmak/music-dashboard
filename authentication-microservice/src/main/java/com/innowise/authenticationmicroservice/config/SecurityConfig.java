@@ -1,13 +1,10 @@
 package com.innowise.authenticationmicroservice.config;
 
-import com.innowise.jwtcommon.config.PasswordEncoderConfig;
-import com.innowise.jwtcommon.security.JwtAccessDeniedHandler;
-import com.innowise.jwtcommon.security.JwtAuthenticationEntryPoint;
-import com.innowise.jwtcommon.security.JwtService;
+import com.innowise.jwtcommon.annotation.EnableJwtAuthentication;
+import com.innowise.jwtcommon.annotation.EnablePasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -24,13 +21,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
+@EnablePasswordEncoder
 @RequiredArgsConstructor
-@Import(value = {
-        PasswordEncoderConfig.class,
-        JwtAuthenticationEntryPoint.class,
-        JwtAccessDeniedHandler.class,
-        JwtService.class
-})
+@EnableJwtAuthentication
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
@@ -62,10 +55,13 @@ public class SecurityConfig {
         http
                 .cors()
                 .and()
-                .csrf().disable()
-                .authorizeHttpRequests()
+                .csrf()
+                .disable()
 
+                .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/api/v1/auth")
+                .permitAll()
+                .requestMatchers("/actuator/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
