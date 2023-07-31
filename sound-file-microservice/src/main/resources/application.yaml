@@ -1,0 +1,27 @@
+# ----- Properties -----
+spring:
+  config:
+    import: optional:configserver:${DISCOVERY_SERVER_ENDPOINT:http://localhost:8761}
+  profiles:
+    active: default, eureka, mysql, jwt, aws, s3, sqs, camel
+  application:
+    name: sound-file-microservice
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 12MB
+      max-request-size: 20MB
+  datasource:
+    url: jdbc:mysql:${MYSQL_TRACKS_ENDPOINT://localhost:3306/song-dashboard-api}
+  liquibase:
+    default_schema: song-dashboard-api
+    change-log: classpath:/db/changelog/uploaded-files-changelog/changelog.xml
+
+# ----- Server -----
+server:
+  port: 0
+
+# ----- Local Storage -----
+local:
+  storage:
+    path: ./local-audio-storage

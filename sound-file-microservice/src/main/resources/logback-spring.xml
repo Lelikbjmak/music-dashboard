@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{ISO8601} %highlight(%-5level) [%green(%t)] %cyan(%C{1}): %msg%n%throwable</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <appender name="AMQP" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+        <layout>
+            <pattern>
+                {
+                "time": "%date{ISO8601}",
+                "thread": "%thread",
+                "level": "%level",
+                "class": "%logger{36}",
+                "message": "%message"
+                }
+            </pattern>
+        </layout>
+
+        <!-- RabbitMQ connection -->
+        <host>${RABBIT_HOST:-localhost}</host>
+        <port>${RABBIT_PORT:-5672}</port>
+        <username>${RABBIT_USERNAME:-admin}</username>
+        <password>${RABBIT_PASSWORD:-123456}</password>
+
+        <applicationId>sound-file-service</applicationId>
+        <routingKeyPattern>log-key</routingKeyPattern>
+        <declareExchange>true</declareExchange>
+        <exchangeType>direct</exchangeType>
+        <exchangeName>logstash_exchange</exchangeName>
+
+        <generateId>true</generateId>
+        <charset>UTF-8</charset>
+        <durable>true</durable>
+        <deliveryMode>PERSISTENT</deliveryMode>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="AMQP"/>
+    </root>
+
+</configuration>

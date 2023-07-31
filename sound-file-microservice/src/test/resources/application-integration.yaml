@@ -1,0 +1,67 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:tc:mysql:8.0.33:///song-dashboard-api-test?TC_INITSCRIPT=sql/init-schema.sql
+    username: root
+    password: qwertY_1351530
+  liquibase:
+    enabled: false
+
+logging:
+  level:
+    org:
+      testcontainers: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+aws:
+  endpoint-url: http://localhost:4566
+  s3:
+    bucket-name: music-file-test-bucket
+  sqs:
+    queue-name:
+      - music-file-test-queue
+      - music-data-test-queue
+
+eureka:
+  client:
+    enabled: false
+
+camel:
+  component:
+    aws2-s3:
+      region: us-east-1
+      auto-create-bucket: true
+      use-default-credentials-provider: true
+    aws2-sqs:
+      region: us-east-1
+      auto-create-queue: true
+      delete-after-read: true
+      use-default-credentials-provider: true
+
+jwt:
+  secret: 2B4D6251655468576D5A7134743777217A25432A462D4A404E635266556A586E
+  validity: 7_200_000
+
+password-encoder:
+  salt-length: 17
+  hash-length: 32
+  parallelism: 1
+  memory: 23552
+  iterations: 2
+
+local:
+  storage:
+    path: ../local-audio-test-storage
