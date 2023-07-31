@@ -1,0 +1,88 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    initialization-mode: always
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    enabled: false
+  redis:
+    host: localhost
+    port: 6379
+
+logging:
+  level:
+    org:
+      testcontainers: DEBUG
+
+aws:
+  endpoint-url: http://localhost:4566
+  s3:
+    bucket-name: music-file-test-bucket
+  sqs:
+    queue-name:
+      - music-file-test-queue
+      - music-data-test-queue
+
+jwt:
+  secret: 2B4D6251655468576D5A7134743777217A25432A462D4A404E635266556A586E
+  validity: 7_200_000
+
+password-encoder:
+  salt-length: 17
+  hash-length: 32
+  parallelism: 1
+  memory: 23552
+  iterations: 2
+
+eureka:
+  client:
+    enabled: false
+
+camel:
+  opentelemetry:
+    enabled: false
+  component:
+    aws2-s3:
+      region: us-east-1
+      auto-create-bucket: false
+      use-default-credentials-provider: true
+    aws2-sqs:
+      region: us-east-1
+      auto-create-queue: true
+      delete-after-read: true
+      use-default-credentials-provider: true
+    mock:
+      autowired-enabled: true
+      log: true
+
+authentication:
+  basic:
+    credentials:
+      username: system
+      password: systemPassword
+      role: SYSTEM
+
+spotify:
+  token-type: Bearer
+  grant-type: client_credentials
+  client-id: 723518c2fb6a4e51a5f61219a5eccbd7
+  client-secret: 63e030797b704e10a848ae5fee09c5ca
+
+album:
+  id: 2UJcKiJxNryhL050F5Z1Fk

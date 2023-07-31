@@ -1,0 +1,26 @@
+# ----- Properties -----
+spring:
+  redis:
+    port: ${REDIS_PORT:6379}
+  config:
+    import: optional:configserver:${DISCOVERY_SERVER_ENDPOINT:http://localhost:8761}
+  profiles:
+    active: default, eureka, aws, sqs, s3, camel, redis, spotify
+  application:
+    name: music-enricher-microservice
+
+# ----- Server -----
+server:
+  port: 0
+
+# ----- Local Storage -----
+local:
+  storage:
+    path: ./local-audio-storage
+
+authentication:
+  basic:
+    credentials:
+      username: system
+      password: systemPassword
+      role: SYSTEM

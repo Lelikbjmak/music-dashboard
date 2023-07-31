@@ -1,0 +1,13 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+
+local:
+  storage:
+    test-file: ../test-files/Jemi.mp3
+
+camel:
+  opentelemetry:
+    enabled: false

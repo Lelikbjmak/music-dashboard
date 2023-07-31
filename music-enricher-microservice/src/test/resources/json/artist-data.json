@@ -1,0 +1,37 @@
+{
+  "external_urls": {
+    "spotify": "https://open.spotify.com/artist/1F8usyx5PbYGWxf0bwdXwA"
+  },
+  "followers": {
+    "href": null,
+    "total": 774355
+  },
+  "genres": [
+    "russian emo rap",
+    "russian grime",
+    "russian hip hop"
+  ],
+  "href": "https://api.spotify.com/v1/artists/1F8usyx5PbYGWxf0bwdXwA",
+  "id": "1F8usyx5PbYGWxf0bwdXwA",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab6761610000e5eb6f159d0c9314e98a9039bc61",
+      "width": 640
+    },
+    {
+      "height": 320,
+      "url": "https://i.scdn.co/image/ab676161000051746f159d0c9314e98a9039bc61",
+      "width": 320
+    },
+    {
+      "height": 160,
+      "url": "https://i.scdn.co/image/ab6761610000f1786f159d0c9314e98a9039bc61",
+      "width": 160
+    }
+  ],
+  "name": "PHARAOH",
+  "popularity": 57,
+  "type": "artist",
+  "uri": "spotify:artist:1F8usyx5PbYGWxf0bwdXwA"
+}
