@@ -1,0 +1,358 @@
+# ----- DOCKER-COMPOSE -----
+version: "3.8"
+
+# TODO: Distributed tracing
+# TODO: volume for local storage for audio files
+services:
+
+  # ----- LOCAL-STACK -----
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:2.1.0
+    ports:
+      - "4566:4566"  # LocalStack Gateway
+    environment:
+      - DEBUG=1
+      - SERVICES=sqs,s3
+      - AWS_ACCESS_KEY_ID=localstack
+      - AWS_SECRET_ACCESS_KEY=localstack
+      - DEFAULT_REGION=us-east-1
+    volumes:
+      - localstack_data:/tmp/localstack
+      - ./aws:/etc/localstack/init/ready.d
+    restart: always
+    networks:
+      - aws-network
+
+  # ----- REDIS -----
+  redis:
+    container_name: redis
+    image: redis:alpine3.18
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - redis-network
+
+  # ----- MYSQL-USERS -----
+  mysql-users:
+    container_name: mysql-users-storage
+    image: mysql:8.0.33
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_users_data:/var/lib/mysql
+    restart: always
+    networks:
+      - mysql-users-network
+
+  # ----- MYSQL-TRACKS -----
+  mysql-tracks:
+    container_name: mysql-tracks-storage
+    image: mysql:8.0.33
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_tracks_data:/var/lib/mysql
+    restart: always
+    networks:
+      - mysql-tracks-network
+
+  # ----- MONGO -----
+  mongo:
+    container_name: mongo
+    image: mongo:6.0.8
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+    networks:
+      - mongo-network
+
+  # ----- DISCOVERY -----
+  discovery-server:
+    image: music-dashboard/discovery-server:latest
+    container_name: discovery-server
+    build: ../discovery
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    environment:
+      WAIT_HOSTS: rabbitmq:5672
+      SPRING_PROFILES_ACTIVE: native
+      RABBIT_HOST: ${RABBIT_HOST}
+      RABBIT_PORT: ${RABBIT_PORT}
+      RABBIT_USERNAME: ${RABBIT_USERNAME}
+      RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+      WAIT_TIMEOUT: 600
+    restart: on-failure
+    networks:
+      - discovery-network
+      - elastic-network
+    depends_on:
+      - rabbitmq
+
+  # ----- API-GATEWAY -----
+  api-gateway:
+    image: music-dashboard/api-gateway:latest
+    container_name: api-gateway
+    build: ../api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - DISCOVERY_SERVER_ENDPOINT
+      - EUREKA_ENDPOINT
+      - RABBIT_HOST
+      - RABBIT_PORT
+      - RABBIT_USERNAME
+      - RABBIT_PASSWORD
+      - WAIT_HOSTS=discovery-server:8761
+      - WAIT_TIMEOUT=600
+    networks:
+      - discovery-network
+      - elastic-network
+    depends_on:
+      - discovery-server
+      - rabbitmq
+    restart: always
+
+  # ----- AUTHENTICATION-SERVICE -----
+  authentication-service:
+    image: music-dashboard/authentication-service:latest
+    container_name: authentication-service
+    build: ../authentication-microservice
+    environment:
+      - DISCOVERY_SERVER_ENDPOINT
+      - EUREKA_ENDPOINT
+      - MYSQL_USERS_ENDPOINT
+      - MYSQL_PASSWORD
+      - MYSQL_USERNAME
+      - RABBIT_HOST
+      - RABBIT_PORT
+      - RABBIT_USERNAME
+      - RABBIT_PASSWORD
+      - WAIT_HOSTS=api-gateway:8080, mysql-users:3306
+      - WAIT_TIMEOUT=600
+    networks:
+      - discovery-network
+      - mysql-users-network
+      - elastic-network
+    depends_on:
+      - mysql-users
+      - api-gateway
+    restart: always
+
+  # ----- SOUND-FILE-SERVICE -----
+  sound-file-service:
+    image: music-dashboard/sound-file-service:latest
+    container_name: sound-file-service
+    build: ../sound-file-microservice
+    volumes:
+      - local-audio-storage:/music-dashboard/storage
+    environment:
+      - DISCOVERY_SERVER_ENDPOINT
+      - EUREKA_ENDPOINT
+      - MYSQL_TRACKS_ENDPOINT
+      - MYSQL_PASSWORD
+      - MYSQL_USERNAME
+      - RABBIT_HOST
+      - RABBIT_PORT
+      - RABBIT_USERNAME
+      - RABBIT_PASSWORD
+      - AWS_ENDPOINT
+      - LOCAL_STORAGE_PATH=./storage
+      - WAIT_HOSTS=api-gateway:8080, mysql-tracks:3306, localstack:4566
+      - WAIT_TIMEOUT=600
+    networks:
+      - discovery-network
+      - mysql-tracks-network
+      - elastic-network
+      - aws-network
+    depends_on:
+      - api-gateway
+      - mysql-tracks
+      - localstack
+    restart: always
+
+  # ----- ENRICH-SERVICE -----
+  enrich-service:
+    image: music-dashboard/enrich-service:latest
+    container_name: enrich-service
+    build: ../music-enricher-microservice
+    environment:
+      - DISCOVERY_SERVER_ENDPOINT
+      - EUREKA_ENDPOINT
+      - AWS_ENDPOINT
+      - WAIT_HOSTS=api-gateway:8080, localstack:4566
+      - WAIT_TIMEOUT=600
+      - AWS_ACCESS_KEY_ID=localstack
+      - AWS_SECRET_ACCESS_KEY=localstack
+      - DEFAULT_REGION=us-east-1
+      - RABBIT_HOST
+      - RABBIT_PORT
+      - RABBIT_USERNAME
+      - RABBIT_PASSWORD
+    networks:
+      - discovery-network
+      - aws-network
+      - elastic-network
+    volumes:
+      - local-audio-storage:/music-dashboard/storage
+    depends_on:
+      - api-gateway
+      - localstack
+      - redis
+    restart: always
+
+  # ----- USER-SERVICE -----
+  user-service:
+    image: music-dashboard/user-service:latest
+    container_name: user-service
+    build: ../user-microservice
+    environment:
+      - DISCOVERY_SERVER_ENDPOINT
+      - EUREKA_ENDPOINT
+      - MYSQL_USERS_ENDPOINT
+      - MYSQL_PASSWORD
+      - MYSQL_USERNAME
+      - RABBIT_HOST
+      - RABBIT_PORT
+      - RABBIT_USERNAME
+      - RABBIT_PASSWORD
+      - WAIT_HOSTS=api-gateway:8080, mysql-users:3306
+      - WAIT_TIMEOUT=600
+    networks:
+      - discovery-network
+      - mysql-users-network
+      - elastic-network
+    depends_on:
+      - mysql-users
+      - api-gateway
+
+  # ----- TRACK-SERVICE -----
+  track-service:
+    image: music-dashboard/track-service:latest
+    container_name: track-service
+    build: ../track-microservice
+    environment:
+      - DISCOVERY_SERVER_ENDPOINT
+      - EUREKA_ENDPOINT
+      - MONGO_HOST
+      - MONGO_PORT
+      - MONGO_USERNAME
+      - MONGO_PASSWORD
+      - MONGO_CONNECTION
+      - RABBIT_HOST
+      - RABBIT_PORT
+      - RABBIT_USERNAME
+      - RABBIT_PASSWORD
+      - AWS_ENDPOINT
+      - AWS_ACCESS_KEY_ID=localstack
+      - AWS_SECRET_ACCESS_KEY=localstack
+      - WAIT_HOSTS=api-gateway:8080, mongo:27017, localstack:4566
+      - WAIT_TIMEOUT=600
+    networks:
+      - discovery-network
+      - mongo-network
+      - aws-network
+      - redis-network
+      - elastic-network
+    depends_on:
+      - mongo
+      - localstack
+      - api-gateway
+
+  # ----- RABBITMQ -----
+  rabbitmq:
+    image: rabbitmq:3.13-rc-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+    networks:
+      - elastic-network
+
+  # ----- ELASTICSEARCH -----
+  elasticsearch:
+    image: elasticsearch:8.8.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - elastic-network
+    depends_on:
+      - rabbitmq
+
+  # ----- KIBANA -----
+  kibana:
+    image: kibana:8.8.1
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    networks:
+      - elastic-network
+    depends_on:
+      - elasticsearch
+
+  # ----- LOGSTASH -----
+  logstash:
+    image: logstash:8.8.1
+    container_name: logstash
+    volumes:
+      - ./logstash/config/logstash-rabbit.conf:/usr/share/logstash/config/pipelines/rabbit.conf
+      - ./logstash/pipeline/pipelines.yaml:/usr/share/logstash/config/pipelines.yml
+    ports:
+      - "5046:5046"
+    networks:
+      - elastic-network
+    depends_on:
+      - elasticsearch
+
+volumes:
+  localstack_data:
+  mysql_users_data:
+  mysql_tracks_data:
+  mongo_data:
+  local_storage:
+  elasticsearch_data:
+  local-audio-storage:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../local-audio-storage
+
+networks:
+  discovery-network:
+    driver: bridge
+  mysql-users-network:
+    driver: bridge
+  mysql-tracks-network:
+    driver: bridge
+  mongo-network:
+    driver: bridge
+  aws-network:
+    driver: bridge
+  redis-network:
+    driver: bridge
+  elastic-network:
+    driver: bridge

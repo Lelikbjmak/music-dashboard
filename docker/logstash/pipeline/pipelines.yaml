@@ -1,0 +1,5 @@
+# ----- Properties -----
+- pipeline.id: rabbit
+  pipeline.workers: 1
+  pipeline.batch.size: 1
+  path.config: /usr/share/logstash/config/pipelines/rabbit.conf
