@@ -10,6 +10,8 @@
 /spotify-common/target/
 /track-microservice/target/
 /user-microservice/target/
+/camel-common/target/
+/user-common/target/
 
 /api-gateway/.mvn
 /authentication-microservice/.mvn
@@ -22,5 +24,7 @@
 /spotify-common/.mvn
 /track-microservice/.mvn
 /user-microservice/.mvn
+/camel-common/.mvn
+/user-common/.mvn
 
 /.idea

@@ -18,14 +18,15 @@
 
     <modules>
         <module>api-gateway</module>
+        <module>user-common</module>
+        <module>jwt-common</module>
+        <module>jwt-common-test</module>
         <module>authentication-microservice</module>
         <module>discovery</module>
         <module>user-microservice</module>
         <module>sound-file-microservice</module>
-        <module>jwt-common</module>
-        <module>jwt-common-test</module>
         <module>spotify-common</module>
-        <module>liquibase-migration</module>
+        <module>camel-common</module>
         <module>music-enricher-microservice</module>
         <module>track-microservice</module>
     </modules>
@@ -36,26 +37,6 @@
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <lombok.version>1.18.28</lombok.version>
     </properties>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>testcontainers-bom</artifactId>
-            <version>${testcontainers.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -68,6 +49,22 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>${testcontainers.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -76,27 +73,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>3.2.1</version>
-                <configuration>
-                    <from>
-                        <image>eclipse-temurin:17.0.4.1_1-jre</image>
-                    </from>
-                    <to>
-                        <image>music-dashboard/${project.artifactId}</image>
-                    </to>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>dockerBuild</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

@@ -19,7 +19,6 @@ import org.testcontainers.utility.DockerImageName;
 @ActiveProfiles(value = "camel")
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//TODO: Make tests for camel route
 class EnrichCamelRouteTest {
 
     @Container
