@@ -5,6 +5,7 @@ import com.innowise.jwtcommon.config.PasswordEncoderConfig;
 import com.innowise.jwtcommon.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableMethodSecurity
 @RequiredArgsConstructor
+@ComponentScan(value = {"com.innowise.jwtcommon.config"})
 @Import(value = {JwtSecurityConfig.class, PasswordEncoderConfig.class})
 public class SecurityConfig {
 
@@ -40,6 +42,8 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/api/v1/user")
+                .permitAll()
+                .requestMatchers("/actuator/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
