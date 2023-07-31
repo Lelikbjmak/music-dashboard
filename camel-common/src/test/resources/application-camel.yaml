@@ -1,0 +1,39 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+
+logging:
+  level:
+    org:
+      testcontainers: DEBUG
+
+aws:
+  endpoint-url: http://localhost:4566
+  s3:
+    bucket-name: music-file-test-bucket
+  sqs:
+    queue-name:
+      - music-file-test-queue
+      - music-data-test-queue
+
+camel:
+  component:
+    aws2-s3:
+      region: us-east-1
+      auto-create-bucket: false
+      use-default-credentials-provider: true
+    aws2-sqs:
+      region: us-east-1
+      auto-create-queue: false
+      delete-after-read: true
+      use-default-credentials-provider: true
+    mock:
+      autowired-enabled: true
+      log: true
+
+local:
+  storage:
+    path: ../local-audio-test-storage
+    test-file: ../test-files/Jemi.mp3
