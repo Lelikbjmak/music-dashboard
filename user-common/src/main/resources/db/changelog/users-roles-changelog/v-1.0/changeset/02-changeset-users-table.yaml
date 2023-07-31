@@ -1,0 +1,20 @@
+# ----- Users table changeset -----
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Lelikbjmak
+      sqlFile:
+        dbms: mysql
+        endDelimiter: "\nGO"
+        stripComments: true
+        splitStatements: true
+        relativeToChangelogFile: true
+        path: ../sql/02-create-users-table.sql
+      rollback:
+        sqlFile:
+          dbms: mysql
+          endDelimiter: "\nGO"
+          stripComments: true
+          splitStatements: true
+          relativeToChangelogFile: true
+          path: ../sql/02-drop-users-table.sql

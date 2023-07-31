@@ -1,0 +1,8 @@
+# ----- Properties -----
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: mysql
+  - include:
+      file: changeset/11-changeset-insert-roles-table.yaml
+      relativeToChangelogFile: true

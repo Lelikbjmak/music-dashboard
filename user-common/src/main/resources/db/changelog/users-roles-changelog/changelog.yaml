@@ -1,0 +1,26 @@
+# ----- Main ChangeLog -----
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: mysql
+  - changeSet:
+      id: 1
+      author: Lelikbjmak
+      tags:
+        - bd_init
+  - include:
+      file: v-1.0/changelog-v-1.0.yaml
+      relativeToChangelogFile: true
+  - changeSet:
+      id: 10
+      author: Lelikbjmak
+      tags:
+        - v-1.0
+  - include:
+      file: v-1.1/changelog-v-1.1.yaml
+      relativeToChangelogFile: true
+  - changeSet:
+      id: 20
+      author: Lelikbjmak
+      tags:
+        - v-1.1

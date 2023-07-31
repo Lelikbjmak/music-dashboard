@@ -1,0 +1,14 @@
+# ----- Properties -----
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: mysql
+  - include:
+      file: changeset/02-changeset-users-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/03-changeset-roles-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/04-changeset-users-roles-table.yaml
+      relativeToChangelogFile: true

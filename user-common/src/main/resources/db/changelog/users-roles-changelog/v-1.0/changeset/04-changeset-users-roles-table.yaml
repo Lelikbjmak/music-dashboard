@@ -1,0 +1,20 @@
+# ----- Roles table changeset -----
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: Lelikbjmak
+      sqlFile:
+        dbms: mysql
+        endDelimiter: "\nGO"
+        stripComments: true
+        splitStatements: true
+        relativeToChangelogFile: true
+        path: ../sql/04-create-users-roles-table.sql
+      rollback:
+        sqlFile:
+          dbms: mysql
+          endDelimiter: "\nGO"
+          stripComments: true
+          splitStatements: true
+          relativeToChangelogFile: true
+          path: ../sql/04-drop-users-roles-table.sql

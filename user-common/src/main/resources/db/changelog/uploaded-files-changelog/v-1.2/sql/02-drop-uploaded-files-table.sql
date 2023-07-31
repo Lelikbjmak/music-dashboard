@@ -1,0 +1,2 @@
+drop table uploaded_audio_files
+GO
