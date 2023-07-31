@@ -1,8 +1,6 @@
 # ----- DOCKER-COMPOSE -----
 version: "3.8"
 
-# TODO: Distributed tracing
-# TODO: volume for local storage for audio files
 services:
 
   # ----- LOCAL-STACK -----

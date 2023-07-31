@@ -16,7 +16,6 @@ import static com.innowise.trackmicroservice.constant.CamelConstant.GET_SPOTIFY_
 import static com.innowise.trackmicroservice.constant.CamelConstant.GET_SPOTIFY_ARTIST_ROUTE;
 
 @Component
-//TODO: Refactor onFallback()
 public class RestCamelRoute extends RouteBuilder {
 
     @Value(value = "${authentication.basic.credentials}")
