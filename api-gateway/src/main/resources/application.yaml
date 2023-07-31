@@ -3,7 +3,7 @@ spring:
   application:
     name: api-gateway
   config:
-    import: optional:configserver:http://localhost:8761
+    import: optional:configserver:${DISCOVERY_SERVER_ENDPOINT:http://localhost:8761}
   profiles:
     active: default, eureka
   cloud:
@@ -31,8 +31,10 @@ spring:
         - id: track-microservice-route
           uri: lb://track-microservice
           predicates:
-            - Path=/api/v1/tracks/**
+            - Path=/api/v1/**
 
 # ----- Server -----
 server:
   port: 8080
+
+
