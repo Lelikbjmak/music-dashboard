@@ -17,6 +17,6 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
-    username: root
-    password: qwertY_1351530
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:qwertY_1351530}
     driver-class-name: com.mysql.cj.jdbc.Driver

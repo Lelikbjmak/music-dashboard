@@ -2,4 +2,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/lelikbjmak
+        uri: mongodb://${MONGO_USERNAME:root}:${MONGO_PASSWORD:root}@${MONGO_HOST:localhost}:${MONGO_PORT:27017}/${MONGO_CONNECTION:song-dashboard-api}?authMechanism=${MONGO_AUTH_MECHANISM:SCRAM-SHA-1}&authSource=${MONGO_AUTH_SOURCE:admin}

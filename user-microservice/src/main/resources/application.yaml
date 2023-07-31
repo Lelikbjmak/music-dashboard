@@ -1,13 +1,13 @@
 # ----- Properties -----
 spring:
   config:
-    import: optional:configserver:http://localhost:8761
+    import: optional:configserver:${DISCOVERY_SERVER_ENDPOINT:http://localhost:8761}
   profiles:
     active: default, eureka, mysql, jwt, security
   application:
     name: user-microservice
   datasource:
-    url: jdbc:mysql://localhost:3306/song-dashboard-api
+    url: jdbc:mysql:${MYSQL_USERS_ENDPOINT://localhost:3306/song-dashboard-api}
   liquibase:
     default_schema: song-dashboard-api
     change-log: classpath:/db/changelog/users-roles-changelog/changelog.yaml
