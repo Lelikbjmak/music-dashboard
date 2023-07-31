@@ -1,0 +1,28 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: spotify-tracks-test
+
+logging:
+  level:
+    org:
+      testcontainers: DEBUG
+
+eureka:
+  client:
+    enabled: false
+
+artist:
+  id: 1F8usyx5PbYGWxf0bwdXwA
+
+album:
+  id: 5Qcbacw3rlqaXFpbIL5Ys6
+
+track:
+  id: 79hOg2OcECgvRGGeX0XJuZ

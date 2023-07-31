@@ -1,0 +1,22 @@
+# ----- Properties -----
+spring:
+  config:
+    import: optional:configserver:${DISCOVERY_SERVER_ENDPOINT:http://localhost:8761}
+  profiles:
+    active: default, eureka, mongo, jwt, aws, sqs, camel, spotify
+  application:
+    name: track-microservice
+  data:
+    mongodb:
+      database: spotify-tracks
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+authentication:
+  basic:
+    credentials: system:systemPassword
+
+# ----- Server -----
+server:
+  port: 0

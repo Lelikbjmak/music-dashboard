@@ -14,7 +14,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-//TODO: test if json is null (Not track was found)
 public class TrackMetadataParserServiceImpl implements MetadataParserService<SpotifyTrackDto> {
 
     private final ObjectMapper objectMapper;

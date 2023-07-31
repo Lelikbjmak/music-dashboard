@@ -93,7 +93,6 @@ class SQSCamelRouteTest {
     }
 
     @Test
-    //TODO: end download from SQS camel rout test
     void mustDownloadFromSQS() throws JsonProcessingException, InterruptedException {
 
         String json = "{\"fileName\":\"testFile\", \"path\":\"S3/testFile\", \"storage\":\"S3\"}";

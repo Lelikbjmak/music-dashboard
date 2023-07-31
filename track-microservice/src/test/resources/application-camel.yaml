@@ -1,0 +1,48 @@
+# ----- Properties -----
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: spotify-tracks-test
+
+logging:
+  level:
+    org:
+      testcontainers: DEBUG
+
+aws:
+  endpoint-url: http://localhost:4566
+  sqs:
+    queue-name: music-data-queue
+
+eureka:
+  client:
+    enabled: false
+
+camel:
+  component:
+    aws2-sqs:
+      region: us-east-1
+      auto-create-queue: true
+      delete-after-read: true
+      use-default-credentials-provider: true
+    mock:
+      autowired-enabled: true
+      log: true
+
+jwt:
+  secret: 2B4D6251655468576D5A7134743777217A25432A462D4A404E635266556A586E
+  validity: 7_200_000
+
+artist:
+  id: 1F8usyx5PbYGWxf0bwdXwA
+
+album:
+  id: 5Qcbacw3rlqaXFpbIL5Ys6
+
+track:
+  id: 79hOg2OcECgvRGGeX0XJuZ
