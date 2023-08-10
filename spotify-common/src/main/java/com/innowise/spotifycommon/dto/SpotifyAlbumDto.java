@@ -31,6 +31,8 @@ public class SpotifyAlbumDto {
     @JsonAlias(value = "release_date")
     private Date releaseDate;
 
+    private String spotifyIconUri;
+
     private String spotifyUri;
 
     private List<String> artistIdList;

@@ -20,5 +20,7 @@ public class SpotifyArtistDto {
 
     private Set<String> genres;
 
+    private String spotifyIconUri;
+
     private String spotifyUri;
 }

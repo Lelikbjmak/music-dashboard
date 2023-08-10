@@ -31,6 +31,8 @@ public class SpotifyTrackDto {
 
     private String spotifyUri;
 
+    private String spotifyIconUri;
+
     private String albumId;
 
     private List<String> trackArtistIdList;
