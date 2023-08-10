@@ -89,6 +89,8 @@ services:
       RABBIT_PORT: ${RABBIT_PORT}
       RABBIT_USERNAME: ${RABBIT_USERNAME}
       RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
       WAIT_TIMEOUT: 600
     restart: on-failure
     networks:
@@ -111,14 +113,15 @@ services:
       - RABBIT_PORT
       - RABBIT_USERNAME
       - RABBIT_PASSWORD
+      - ORIGIN_ENDPOINT
       - WAIT_HOSTS=discovery-server:8761
       - WAIT_TIMEOUT=600
     networks:
       - discovery-network
       - elastic-network
+      - ui
     depends_on:
       - discovery-server
-      - rabbitmq
     restart: always
 
   # ----- AUTHENTICATION-SERVICE -----
@@ -136,7 +139,7 @@ services:
       - RABBIT_PORT
       - RABBIT_USERNAME
       - RABBIT_PASSWORD
-      - WAIT_HOSTS=api-gateway:8080, mysql-users:3306
+      - WAIT_HOSTS=api-gateway:8080, mysql-users-storage:3306
       - WAIT_TIMEOUT=600
     networks:
       - discovery-network
@@ -165,8 +168,7 @@ services:
       - RABBIT_USERNAME
       - RABBIT_PASSWORD
       - AWS_ENDPOINT
-      - LOCAL_STORAGE_PATH=./storage
-      - WAIT_HOSTS=api-gateway:8080, mysql-tracks:3306, localstack:4566
+      - WAIT_HOSTS=api-gateway:8080, mysql-tracks-storage:3306, localstack:4566
       - WAIT_TIMEOUT=600
     networks:
       - discovery-network
@@ -188,19 +190,19 @@ services:
       - DISCOVERY_SERVER_ENDPOINT
       - EUREKA_ENDPOINT
       - AWS_ENDPOINT
-      - WAIT_HOSTS=api-gateway:8080, localstack:4566
-      - WAIT_TIMEOUT=600
-      - AWS_ACCESS_KEY_ID=localstack
-      - AWS_SECRET_ACCESS_KEY=localstack
-      - DEFAULT_REGION=us-east-1
+      - REDIS_HOST
+      - REDIS_PORT
       - RABBIT_HOST
       - RABBIT_PORT
       - RABBIT_USERNAME
       - RABBIT_PASSWORD
+      - WAIT_HOSTS=api-gateway:8080, localstack:4566, redis:6379
+      - WAIT_TIMEOUT=600
     networks:
       - discovery-network
       - aws-network
       - elastic-network
+      - redis-network
     volumes:
       - local-audio-storage:/music-dashboard/storage
     depends_on:
@@ -252,16 +254,15 @@ services:
       - RABBIT_USERNAME
       - RABBIT_PASSWORD
       - AWS_ENDPOINT
-      - AWS_ACCESS_KEY_ID=localstack
-      - AWS_SECRET_ACCESS_KEY=localstack
       - WAIT_HOSTS=api-gateway:8080, mongo:27017, localstack:4566
       - WAIT_TIMEOUT=600
     networks:
       - discovery-network
       - mongo-network
       - aws-network
-      - redis-network
       - elastic-network
+    ports:
+      - "8085:8085"
     depends_on:
       - mongo
       - localstack
@@ -325,6 +326,18 @@ services:
     depends_on:
       - elasticsearch
 
+  # ----- FRONT-END -----
+  front-end:
+    container_name: front-end
+    build:
+      context: ../front-end
+      dockerfile: dockerfile
+    ports:
+      - "8090:8090"
+    networks:
+      - ui
+    restart: always
+
 volumes:
   localstack_data:
   mysql_users_data:
@@ -353,4 +366,6 @@ networks:
   redis-network:
     driver: bridge
   elastic-network:
+    driver: bridge
+  ui:
     driver: bridge
