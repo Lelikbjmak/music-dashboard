@@ -8,12 +8,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/albums")
 public class AlbumController {
 
     private final AlbumService albumService;
+
+    @GetMapping
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<AlbumDto> findAll() {
+        return albumService.findAll();
+    }
 
     @GetMapping(value = "{id}")
     @ResponseStatus(value = HttpStatus.OK)

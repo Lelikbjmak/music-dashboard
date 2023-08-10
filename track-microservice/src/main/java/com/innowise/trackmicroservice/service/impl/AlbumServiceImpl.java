@@ -7,6 +7,7 @@ import com.innowise.trackmicroservice.domain.Track;
 import com.innowise.trackmicroservice.dto.AlbumDto;
 import com.innowise.trackmicroservice.dto.TrackDto;
 import com.innowise.trackmicroservice.exception.ResourceNotFoundException;
+import com.innowise.trackmicroservice.mapper.AlbumListMapper;
 import com.innowise.trackmicroservice.mapper.AlbumMapper;
 import com.innowise.trackmicroservice.mapper.TrackListMapper;
 import com.innowise.trackmicroservice.repository.AlbumRepository;
@@ -29,6 +30,8 @@ import static com.innowise.trackmicroservice.constant.CamelConstant.GET_SPOTIFY_
 public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumMapper albumMapper;
+
+    private final AlbumListMapper albumListMapper;
 
     private final TrackListMapper trackListMapper;
 
@@ -110,5 +113,11 @@ public class AlbumServiceImpl implements AlbumService {
         Album editedAlbum = albumRepository.save(album);
 
         return albumMapper.mapToDto(editedAlbum);
+    }
+
+    @Override
+    public List<AlbumDto> findAll() {
+        List<Album> albumList = albumRepository.findAll();
+        return albumListMapper.mapToDtoList(albumList);
     }
 }
