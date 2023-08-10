@@ -4,6 +4,7 @@ import com.innowise.spotifycommon.dto.SpotifyArtistDto;
 import com.innowise.trackmicroservice.domain.Artist;
 import com.innowise.trackmicroservice.dto.ArtistDto;
 import com.innowise.trackmicroservice.exception.ResourceNotFoundException;
+import com.innowise.trackmicroservice.mapper.ArtistListMapper;
 import com.innowise.trackmicroservice.mapper.ArtistMapper;
 import com.innowise.trackmicroservice.repository.ArtistRepository;
 import com.innowise.trackmicroservice.service.ArtistService;
@@ -22,6 +23,8 @@ import java.util.Optional;
 public class ArtistServiceImpl implements ArtistService {
 
     private final ArtistMapper artistMapper;
+
+    private final ArtistListMapper artistListMapper;
 
     private final ArtistRepository artistRepository;
 
@@ -91,6 +94,12 @@ public class ArtistServiceImpl implements ArtistService {
                 .map(artistMapper::mapToEntity)
                 .map(this::save)
                 .toList();
+    }
+
+    @Override
+    public List<ArtistDto> findAll() {
+        List<Artist> artistList = artistRepository.findAll();
+        return artistListMapper.mapToDtoList(artistList);
     }
 
 }

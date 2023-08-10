@@ -16,4 +16,6 @@ public interface ArtistService {
     ArtistDto findById(String id);
 
     List<ArtistDto> registerArtistsIfNotExists(List<String> spotifyArtistIdList);
+
+    List<ArtistDto> findAll();
 }
