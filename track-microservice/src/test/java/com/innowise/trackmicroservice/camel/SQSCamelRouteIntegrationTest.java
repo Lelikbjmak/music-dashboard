@@ -116,6 +116,7 @@ class SQSCamelRouteIntegrationTest {
                 56,
                 3436L,
                 "spotifyUri",
+                "spotifyUri",
                 albumId,
                 List.of(artistId),
                 List.of(artistId)

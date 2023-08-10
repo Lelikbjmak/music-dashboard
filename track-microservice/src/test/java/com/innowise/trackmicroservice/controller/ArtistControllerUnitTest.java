@@ -50,6 +50,7 @@ class ArtistControllerUnitTest {
                 "as",
                 null,
                 null,
+                null,
                 null
         );
 
@@ -124,6 +125,7 @@ class ArtistControllerUnitTest {
                 "newName",
                 null,
                 null,
+                null,
                 null
         );
 
@@ -132,6 +134,7 @@ class ArtistControllerUnitTest {
                 "newName",
                 null,
                 80,
+                null,
                 null
         );
 
@@ -160,6 +163,7 @@ class ArtistControllerUnitTest {
         ArtistDto artistDto = new ArtistDto(
                 artistId,
                 artistName,
+                null,
                 null,
                 null,
                 null

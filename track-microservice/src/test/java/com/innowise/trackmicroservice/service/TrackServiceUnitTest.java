@@ -68,6 +68,7 @@ class TrackServiceUnitTest {
                 10,
                 2963,
                 "spotifyUri",
+                "spotifyUri",
                 mockAlbumId,
                 mockTrackArtistIdList,
                 mockTrackArtistIdList
@@ -102,6 +103,7 @@ class TrackServiceUnitTest {
                 1,
                 2963L,
                 "spotifyUri",
+                "spotifyUri",
                 19,
                 10,
                 null,
@@ -127,6 +129,7 @@ class TrackServiceUnitTest {
     void mustSaveTrack() {
         TrackDto mockTrackDto = new TrackDto(
                 "trackId",
+                null,
                 null,
                 null,
                 null,
@@ -179,12 +182,14 @@ class TrackServiceUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
         TrackDto mockTrackDtoAfterEdit = new TrackDto(
                 mockTrackToEditId,
                 "newTitle",
+                null,
                 null,
                 null,
                 null,
@@ -226,6 +231,7 @@ class TrackServiceUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -243,6 +249,7 @@ class TrackServiceUnitTest {
 
         TrackDto mockTrackDto = new TrackDto(
                 mockId,
+                null,
                 null,
                 null,
                 null,

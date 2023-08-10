@@ -73,6 +73,7 @@ class ArtistMapperTest {
                 "name",
                 null,
                 1,
+                "uri",
                 "uri"
         );
 
@@ -82,6 +83,7 @@ class ArtistMapperTest {
         expectedArtist.setId("id");
         expectedArtist.setGenres(null);
         expectedArtist.setSpotifyUri("uri");
+        expectedArtist.setSpotifyIconUri("uri");
 
         Artist actualArtist = artistMapper.mapToEntity(artistDto);
 
@@ -105,6 +107,7 @@ class ArtistMapperTest {
                 Set.of("ROCK"),
                 10,
                 "mockUri",
+                "mockUri",
                 null
         );
 
@@ -113,6 +116,7 @@ class ArtistMapperTest {
                 "mockName",
                 Set.of("ROCK"),
                 10,
+                "mockUri",
                 "mockUri"
         );
 

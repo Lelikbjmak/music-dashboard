@@ -55,6 +55,7 @@ class TrackMetadataParserServiceIntegrationTest {
                 49,
                 233116,
                 "https://open.spotify.com/track/6gDEnvN8kU1P0b9X1psvWN",
+                "https://open.spotify.com/track/6gDEnvN8kU1P0b9X1psvWN",
                 "3YMe42ahPZSR1vIglZJUIb",
                 List.of("1F8usyx5PbYGWxf0bwdXwA", "4h8pGxEIOi7j4me1yhYxlD"),
                 List.of("1F8usyx5PbYGWxf0bwdXwA", "4h8pGxEIOi7j4me1yhYxlD")

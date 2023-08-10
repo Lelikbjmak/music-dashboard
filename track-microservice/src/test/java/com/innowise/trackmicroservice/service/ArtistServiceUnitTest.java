@@ -54,6 +54,7 @@ class ArtistServiceUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -98,6 +99,7 @@ class ArtistServiceUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -120,6 +122,7 @@ class ArtistServiceUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -138,6 +141,7 @@ class ArtistServiceUnitTest {
 
         ArtistDto artistDto = new ArtistDto(
                 artistId,
+                null,
                 null,
                 null,
                 null,
@@ -164,6 +168,7 @@ class ArtistServiceUnitTest {
                 null,
                 0,
                 null,
+                null,
                 null
         );
 
@@ -171,6 +176,7 @@ class ArtistServiceUnitTest {
                 artistId2,
                 null,
                 0,
+                null,
                 null,
                 null
         );
@@ -188,11 +194,13 @@ class ArtistServiceUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
         ArtistDto artistDto2 = new ArtistDto(
                 artistId2,
+                null,
                 null,
                 null,
                 null,

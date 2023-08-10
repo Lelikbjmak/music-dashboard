@@ -57,6 +57,7 @@ class ArtistListMapperTest {
                 "artist1",
                 null,
                 0,
+                null,
                 null
         );
 
@@ -65,6 +66,7 @@ class ArtistListMapperTest {
                 "artist2",
                 null,
                 0,
+                null,
                 null
         );
 
@@ -92,6 +94,7 @@ class ArtistListMapperTest {
                         "artist1",
                         null,
                         0,
+                        null,
                         null
                 ),
                 new ArtistDto(
@@ -99,6 +102,7 @@ class ArtistListMapperTest {
                         "artist2",
                         null,
                         0,
+                        null,
                         null
                 )
         );

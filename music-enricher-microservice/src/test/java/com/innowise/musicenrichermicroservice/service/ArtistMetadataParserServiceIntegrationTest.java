@@ -50,6 +50,7 @@ class ArtistMetadataParserServiceIntegrationTest {
                 "PHARAOH",
                 57,
                 Set.of("russian emo rap", "russian grime", "russian hip hop"),
+                "https://open.spotify.com/artist/1F8usyx5PbYGWxf0bwdXwA",
                 "https://open.spotify.com/artist/1F8usyx5PbYGWxf0bwdXwA"
         );
 

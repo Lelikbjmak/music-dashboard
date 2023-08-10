@@ -58,6 +58,7 @@ class AlbumMetadataParserServiceIntegrationTest {
                 13,
                 new LocalDateTime(2023, 5, 26, 3, 0, 0).toDate(),
                 "https://open.spotify.com/album/4MlBJlydRNG0rAoSgh1Ia3",
+                "https://open.spotify.com/album/4MlBJlydRNG0rAoSgh1Ia3",
                 new ArrayList<>(List.of("7kB4F3PktJEy9jbwI6ujjZ"))
         );
 

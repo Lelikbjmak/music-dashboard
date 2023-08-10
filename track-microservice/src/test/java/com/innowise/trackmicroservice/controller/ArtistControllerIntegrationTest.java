@@ -117,6 +117,7 @@ class ArtistControllerIntegrationTest {
                 artistName,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -139,6 +140,7 @@ class ArtistControllerIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -151,6 +153,7 @@ class ArtistControllerIntegrationTest {
     @Test
     void whenNotValidInput_idFiledIsNotPresent_thenEditAlbumByIdMustReturn403() {
         ArtistDto artistDto = new ArtistDto(
+                null,
                 null,
                 null,
                 null,
@@ -191,6 +194,7 @@ class ArtistControllerIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
         ResponseEntity<Void> response = testRestTemplate.exchange("/api/v1/artists", HttpMethod.PUT, new HttpEntity<>(artistDto), Void.class, mockId);
@@ -216,6 +220,7 @@ class ArtistControllerIntegrationTest {
         final String mockId = "SDLSLKSG";
         ArtistDto artistDto = new ArtistDto(
                 mockId,
+                null,
                 null,
                 null,
                 null,

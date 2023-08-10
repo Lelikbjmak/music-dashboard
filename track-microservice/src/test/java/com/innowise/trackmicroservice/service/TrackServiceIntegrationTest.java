@@ -74,6 +74,7 @@ class TrackServiceIntegrationTest {
                 67,
                 2953L,
                 "spotifyUri",
+                "spotifyUri",
                 albumId,
                 List.of(artistId),
                 List.of(artistId)
@@ -94,6 +95,7 @@ class TrackServiceIntegrationTest {
                 "title",
                 1,
                 2365L,
+                "spotifyUri",
                 "spotifyUri",
                 12,
                 67,
@@ -156,6 +158,7 @@ class TrackServiceIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -180,6 +183,7 @@ class TrackServiceIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -196,6 +200,7 @@ class TrackServiceIntegrationTest {
         TrackDto trackDtoToEdit = new TrackDto(
                 trackId,
                 newTrackTitle,
+                null,
                 null,
                 null,
                 null,

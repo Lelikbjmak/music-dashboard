@@ -71,6 +71,7 @@ class AlbumMapperTest {
         album.setAlbumType(AlbumTypeEnum.ALBUM);
         album.setLabel("mockLabel");
         album.setSpotifyUri("mockUri");
+        album.setSpotifyIconUri("mockUri");
         album.setTotalTracks(10);
         album.setPopularity(10);
 
@@ -81,6 +82,7 @@ class AlbumMapperTest {
                 10,
                 null,
                 10,
+                "mockUri",
                 "mockUri",
                 "mockLabel",
                 null,

@@ -60,6 +60,7 @@ class EnrichControllerUnitTest {
                 13,
                 null,
                 "www.spotify.com/test/spotify/album/url.com",
+                "www.spotify.com/test/spotify/album/url.com",
                 List.of("Artist1", "Artist2")
         );
 
@@ -106,6 +107,7 @@ class EnrichControllerUnitTest {
                 "artistName",
                 100,
                 Set.of("ROCK"),
+                "www.spotify.com/path/to/artist",
                 "www.spotify.com/path/to/artist"
         );
 

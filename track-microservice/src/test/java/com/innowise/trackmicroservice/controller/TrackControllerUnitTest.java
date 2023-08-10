@@ -54,6 +54,7 @@ class TrackControllerUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -132,6 +133,7 @@ class TrackControllerUnitTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -139,6 +141,7 @@ class TrackControllerUnitTest {
         TrackDto mockTrackDto = new TrackDto(
                 trackId,
                 "newTitle",
+                null,
                 null,
                 null,
                 null,
@@ -174,6 +177,7 @@ class TrackControllerUnitTest {
         TrackDto trackDto = new TrackDto(
                 trackId,
                 trackName,
+                null,
                 null,
                 null,
                 null,

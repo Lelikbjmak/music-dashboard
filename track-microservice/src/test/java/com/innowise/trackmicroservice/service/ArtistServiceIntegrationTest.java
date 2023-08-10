@@ -119,6 +119,7 @@ class ArtistServiceIntegrationTest {
                 artistName,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -136,6 +137,7 @@ class ArtistServiceIntegrationTest {
 
         ArtistDto artistDto = new ArtistDto(
                 artistId,
+                null,
                 null,
                 null,
                 null,

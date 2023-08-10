@@ -123,6 +123,7 @@ class TrackControllerIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -149,6 +150,7 @@ class TrackControllerIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -161,6 +163,7 @@ class TrackControllerIntegrationTest {
     @Test
     void whenNotValidInput_idFiledIsNotPresent_thenEditTrackByIdMustReturn403() {
         TrackDto trackDtoToEdit = new TrackDto(
+                null,
                 null,
                 null,
                 null,
@@ -209,6 +212,7 @@ class TrackControllerIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         );
 
@@ -236,6 +240,7 @@ class TrackControllerIntegrationTest {
         TrackDto trackDtoToEdit = new TrackDto(
                 mockId,
                 "newTitle",
+                null,
                 null,
                 null,
                 null,
