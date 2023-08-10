@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/tracks")
@@ -17,8 +19,8 @@ public class TrackController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public String a() {
-        return "trackService.findById(id)";
+    public List<TrackDto> getAllTracks() {
+        return trackService.findAll();
     }
 
     @GetMapping(value = "{id}")

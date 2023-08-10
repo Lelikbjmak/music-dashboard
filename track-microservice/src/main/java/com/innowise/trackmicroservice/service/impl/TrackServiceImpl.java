@@ -6,6 +6,7 @@ import com.innowise.trackmicroservice.domain.Artist;
 import com.innowise.trackmicroservice.domain.Track;
 import com.innowise.trackmicroservice.dto.TrackDto;
 import com.innowise.trackmicroservice.exception.ResourceNotFoundException;
+import com.innowise.trackmicroservice.mapper.TrackListMapper;
 import com.innowise.trackmicroservice.mapper.TrackMapper;
 import com.innowise.trackmicroservice.repository.AlbumRepository;
 import com.innowise.trackmicroservice.repository.ArtistRepository;
@@ -26,6 +27,8 @@ public class TrackServiceImpl implements TrackService {
     private final TrackRepository trackRepository;
 
     private final TrackMapper trackMapper;
+
+    private final TrackListMapper trackListMapper;
 
     private final AlbumRepository albumRepository;
 
@@ -93,6 +96,13 @@ public class TrackServiceImpl implements TrackService {
         Track editedTrack = trackRepository.save(trackToEdit);
 
         return trackMapper.mapToDto(editedTrack);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TrackDto> findAll() {
+        List<Track> trackList = trackRepository.findAll();
+        return trackListMapper.mapToDtoList(trackList);
     }
 
 }

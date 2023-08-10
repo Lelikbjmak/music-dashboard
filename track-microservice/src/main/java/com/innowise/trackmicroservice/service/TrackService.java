@@ -3,6 +3,8 @@ package com.innowise.trackmicroservice.service;
 import com.innowise.spotifycommon.dto.SpotifyTrackDto;
 import com.innowise.trackmicroservice.dto.TrackDto;
 
+import java.util.List;
+
 public interface TrackService {
 
     TrackDto registerNewTrack(SpotifyTrackDto spotifyTrackDto);
@@ -14,4 +16,6 @@ public interface TrackService {
     TrackDto findById(String id);
 
     TrackDto edit(TrackDto trackDto);
+
+    List<TrackDto> findAll();
 }
