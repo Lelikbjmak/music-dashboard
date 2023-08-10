@@ -1,3 +1,6 @@
 # ----- AWS -----
 aws:
   endpoint-url: ${AWS_ENDPOINT:http://localhost:4566}
+  credentials:
+    access-key: localstack
+    secret-key: localstack

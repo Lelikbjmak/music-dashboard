@@ -26,8 +26,8 @@ public class AlbumMetadataParserServiceImpl implements MetadataParserService<Spo
 
         SpotifyAlbumDto spotifyAlbumDto = objectMapper.readValue(json, SpotifyAlbumDto.class);
 
-        String spotifyUri = albumMetadata.get("external_urls").get("spotify").asText();
-        String jsonAlbumType = albumMetadata.get("album_type").asText().toUpperCase();
+        String spotifyIconUri = albumMetadata.get("images").get(0).get("url").asText();
+        String spotifyUri = albumMetadata.get("external_urls").get("spotify").asText();        String jsonAlbumType = albumMetadata.get("album_type").asText().toUpperCase();
         JsonNode albumArtistListNode = albumMetadata.get("artists");
 
         List<String> artistIdList = new LinkedList<>();
@@ -36,6 +36,7 @@ public class AlbumMetadataParserServiceImpl implements MetadataParserService<Spo
 
         AlbumTypeEnum albumType = AlbumTypeEnum.valueOf(jsonAlbumType);
 
+        spotifyAlbumDto.setSpotifyIconUri(spotifyIconUri);
         spotifyAlbumDto.setSpotifyUri(spotifyUri);
         spotifyAlbumDto.setAlbumType(albumType);
         spotifyAlbumDto.setArtistIdList(artistIdList);

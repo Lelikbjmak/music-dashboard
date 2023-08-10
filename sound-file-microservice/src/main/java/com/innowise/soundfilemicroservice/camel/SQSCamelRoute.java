@@ -14,11 +14,10 @@ public class SQSCamelRoute extends RouteBuilder {
 
         from(UPLOAD_TO_SQS_ROUTE)
                 .id("UPLOAD_TO_SQS_ROUTE")
-                .log(LoggingLevel.DEBUG, "Publishing message `${body}` to SQS `{{aws.sqs.queue-name[0]}}`...")
+                .log(LoggingLevel.INFO, "Publishing message `${body}` to SQS `{{aws.sqs.queue-name[0]}}`...")
                 .marshal().json()
                 .circuitBreaker()
                     .resilience4jConfiguration()
-                        .timeoutEnabled(true).timeoutDuration(1000)
                         .failureRateThreshold(60)
                         .waitDurationInOpenState(5)
                         .automaticTransitionFromOpenToHalfOpenEnabled(true)

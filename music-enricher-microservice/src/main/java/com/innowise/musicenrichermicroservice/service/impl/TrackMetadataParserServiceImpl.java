@@ -32,6 +32,8 @@ public class TrackMetadataParserServiceImpl implements MetadataParserService<Spo
         JsonNode albumNode = trackMetadata.get("album");
 
         String albumId = albumNode.get("id").asText();
+        String spotifyIconUri = albumNode.get("images").get(0).get("url").asText();
+
         JsonNode albumArtistsNode = albumNode.get("artists");
         List<String> albumArtistIdList = new LinkedList<>();
         albumArtistsNode.forEach(artist ->
@@ -46,6 +48,7 @@ public class TrackMetadataParserServiceImpl implements MetadataParserService<Spo
 
         spotifyTrackDto.setAlbumId(albumId);
         spotifyTrackDto.setSpotifyUri(spotifyUri);
+        spotifyTrackDto.setSpotifyIconUri(spotifyIconUri);
         spotifyTrackDto.setTrackArtistIdList(artistIdList);
         spotifyTrackDto.setAlbumArtistIdList(albumArtistIdList);
 

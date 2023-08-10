@@ -24,10 +24,6 @@ public class RestCamelRoute extends RouteBuilder {
     @Override
     public void configure() {
 
-        onException(Exception.class)
-                .handled(true)
-                .log("${exception.message}");
-
         from(GET_SPOTIFY_ALBUM_ROUTE)
                 .id("GET_SPOTIFY_ALBUM")
                 .setHeader(Exchange.HTTP_METHOD, HttpMethods.GET)
@@ -57,9 +53,9 @@ public class RestCamelRoute extends RouteBuilder {
                         .automaticTransitionFromOpenToHalfOpenEnabled(true)
                         .permittedNumberOfCallsInHalfOpenState(5)
                     .end()
+                .onFallback().throwException(new RuntimeException())
                     .toD("http://localhost:8080/api/v1/enrich/artists/${body}")
                     .unmarshal().json(SpotifyArtistDto.class)
-                .endCircuitBreaker()
-                .onFallback().throwException(new RuntimeException());
+                .endCircuitBreaker();
     }
 }

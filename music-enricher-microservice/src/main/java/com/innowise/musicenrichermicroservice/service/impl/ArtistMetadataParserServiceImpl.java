@@ -16,10 +16,12 @@ public class ArtistMetadataParserServiceImpl implements MetadataParserService<Sp
 
     @Override
     public SpotifyArtistDto parse(String json) throws JsonProcessingException {
-        JsonNode jsonNode = objectMapper.readTree(json);
+        JsonNode artistMetadata = objectMapper.readTree(json);
         SpotifyArtistDto spotifyArtistDto = objectMapper.readValue(json, SpotifyArtistDto.class);
-        String spotifyUri = jsonNode.get("external_urls").get("spotify").asText();
+        String spotifyIconUri = artistMetadata.get("images").get(0).get("url").asText();
+        String spotifyUri = artistMetadata.get("external_urls").get("spotify").asText();
         spotifyArtistDto.setSpotifyUri(spotifyUri);
+        spotifyArtistDto.setSpotifyIconUri(spotifyIconUri);
         return spotifyArtistDto;
     }
 }

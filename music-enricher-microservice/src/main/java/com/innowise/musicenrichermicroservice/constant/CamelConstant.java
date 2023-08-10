@@ -12,7 +12,6 @@ public class CamelConstant {
     public static final String DOWNLOAD_FROM_SQS_ROUTE = "aws2-sqs:music-file-queue";
     public static final String ENRICH_TRACK_ROUTE = "direct:EnrichTrack";
 
-    public static final String AWS_ENDPOINT_URL_PROPERTY = "${aws.endpoint-url}";
     public static final String SPOTIFY_TOKEN_TYPE = "${spotify.token-type}";
 
 }

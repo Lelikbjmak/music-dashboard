@@ -3,11 +3,9 @@ package com.innowise.musicenrichermicroservice.camel;
 import com.innowise.musicenrichermicroservice.exception.SpotifyException;
 import com.innowise.musicenrichermicroservice.spotify.SpotifyAuthenticationResponse;
 import org.apache.camel.Exchange;
-import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http.HttpMethods;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +24,7 @@ public class SpotifyCamelRoute extends RouteBuilder {
                 .log("Error occurred: ${exception.message}\tResponse body: ${body}");
 
         from(SPOTIFY_AUTHENTICATION_ROUTE)
+                .id("SPOTIFY-AUTHENTICATION-ROUTE")
                 .setHeader(Exchange.HTTP_METHOD, HttpMethods.POST)
                 .setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
                 .circuitBreaker()
@@ -42,6 +41,7 @@ public class SpotifyCamelRoute extends RouteBuilder {
                 .onFallback().throwException(new SpotifyException(spotifyUnavailableMessage));
 
         from(SPOTIFY_SEARCH_ITEM_ROUTE)
+                .id("SPOTIFY-SEARCH-ROUTE")
                 .setHeader(Exchange.HTTP_METHOD, HttpMethods.GET)
                 .setHeader(HttpHeaders.AUTHORIZATION, simple("Bearer ${body.accessToken()}"))
                 .circuitBreaker()
@@ -57,6 +57,7 @@ public class SpotifyCamelRoute extends RouteBuilder {
                 .convertBodyTo(String.class);
 
         from(SPOTIFY_OBJECT_ROUTE)
+                .id("SPOTIFY-SEARCH_ARTIST/ALBUM/TRACK")
                 .setHeader(Exchange.HTTP_METHOD, HttpMethods.GET)
                 .setHeader(HttpHeaders.AUTHORIZATION, simple("Bearer ${body.accessToken()}"))
                 .circuitBreaker()

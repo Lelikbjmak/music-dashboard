@@ -19,7 +19,7 @@ spring:
         - id: user-microservice-route
           uri: lb://user-microservice
           predicates:
-            - Path=/api/v1/user/**
+            - Path=/api/v1/users/**
         - id: sound-file-microservice-route
           uri: lb://sound-file-microservice
           predicates:
@@ -37,4 +37,5 @@ spring:
 server:
   port: 8080
 
-
+origin:
+  endpoint: ${ORIGIN_ENDPOINT:localhost:4200}

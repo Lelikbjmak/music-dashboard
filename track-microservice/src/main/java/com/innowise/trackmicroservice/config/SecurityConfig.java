@@ -36,8 +36,6 @@ public class SecurityConfig {
                 .disable()
 
                 .authorizeHttpRequests()
-                .requestMatchers("/actuator/**")
-                .permitAll()
                 .anyRequest()
                 .authenticated()
 
