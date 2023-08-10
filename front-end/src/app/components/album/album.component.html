@@ -1,0 +1,44 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@200;300;400;600&family=Barlow:wght@400;500&display=swap"
+    rel="stylesheet">
+
+<div class="album">
+    <a [href]="album.spotifyUri">
+        <img class="album__image" [src]="album.spotifyIconUri" [alt]="album.name">
+    </a>
+    <div class="album-data">
+        <div class="album-data__name">{{album.name}}</div>
+        <div class="album-meta">
+            <span class="album-meta__span">
+                Type:
+            </span>
+            {{album.albumType}}
+        </div>
+        <div class="album-meta">
+            <span class="album-meta__span">
+                Popularity:
+            </span>
+            {{album.popularity}}
+        </div>
+        <div class="album-meta">
+            <span class="album-meta__span">
+                Realese date:
+            </span>
+            {{album.releaseDate | formatDate}}
+        </div>
+        <div class="album-meta">
+            <span class="album-meta__span">
+                Total tracks:
+            </span>
+            {{album.totalTracks}}
+        </div>
+        <div class="album-meta">
+            <span class="album-meta__span">
+                Label:
+            </span>
+            <i>{{album.label}}</i>
+        </div>
+    </div>
+
+</div>

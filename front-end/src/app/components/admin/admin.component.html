@@ -1,0 +1,80 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@200;300;400;600&family=Barlow:wght@400;500&display=swap"
+    rel="stylesheet">
+
+<div class="admin-manage-panel">
+    <div class="message" *ngIf="message">{{message}}</div>
+    <app-error></app-error>
+    <div class="admin-manage-panel-nav">
+        <label class="admin-manage-panel-label" [ngClass]="{ 'active': selectedRadio === 'tracks' }">
+            <span>Tracks</span>
+            <input type="radio" class="admin-manage-panel__radio" name="admin-manage-panel__radio"
+                [(ngModel)]="selectedRadio" value="tracks" (change)="onRadioChange()">
+        </label>
+        <label class="admin-manage-panel-label" [ngClass]="{ 'active': selectedRadio === 'artists' }">
+            <span>Artists</span>
+            <input type="radio" class="admin-manage-panel__radio" name="admin-manage-panel__radio"
+                [(ngModel)]="selectedRadio" value="artists" (change)="onRadioChange()">
+        </label>
+        <label class="admin-manage-panel-label" [ngClass]="{ 'active': selectedRadio === 'albums' }">
+            <span>Albums</span>
+            <input type="radio" class="admin-manage-panel__radio" name="admin-manage-panel__radio"
+                [(ngModel)]="selectedRadio" value="albums" (change)="onRadioChange()">
+        </label>
+    </div>
+    <div class="admin-manage-panel-data">
+        <div class="admin-manage-panel-data-selects">
+            <div *ngIf="selectedRadio === 'tracks'">
+                <select [(ngModel)]="selectedTrack" class="admin-manage-panel-data-selects__select">
+                    <option *ngFor="let track of trackList" [ngValue]="track">
+                        {{ track.title }} -
+                        <small *ngFor="let artist of track.artistList; let isLast=last">
+                            {{ artist.name }}{{ isLast ? '' : ', ' }}
+                        </small>
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="selectedRadio   === 'artists'">
+                <select [(ngModel)]="selectedArtist" class="admin-manage-panel-data-selects__select">
+                    <option *ngFor="let artist of artistList" [ngValue]="artist">
+                        {{ artist.name }}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="selectedRadio === 'albums'">
+                <select [(ngModel)]="selectedAlbum" class="admin-manage-panel-data-selects__select">
+                    <option *ngFor="let album of albumList" [ngValue]="album">
+                        {{ album.name }}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="selectedRadio" class="" ngClass="admin-manage-panel-data-buttons">
+                <button class="admin-manage-panel-data__button" (click)="delete()">Delete</button>
+                <button class="admin-manage-panel-data__button" (click)="isEditStatus = true">Edit</button>
+            </div>
+        </div>
+        <div *ngIf="selectedTrack">
+            <app-track [track]="selectedTrack"></app-track>
+        </div>
+        <div *ngIf="selectedAlbum">
+            <app-album [album]="selectedAlbum"></app-album>
+        </div>
+        <div *ngIf="selectedArtist">
+            <app-artist [artist]="selectedArtist"></app-artist>
+        </div>
+    </div>
+</div>
+<app-progress-loader [isLoading]="isLoading"></app-progress-loader>
+<div *ngIf="selectedArtist && isEditStatus">
+    <app-edit-artist [selectedArtist]="selectedArtist" [isEditStatus]="isEditStatus"
+        (editStatusChange)="onEditStatusChange($event)" (artistChange)="editArtist($event)"></app-edit-artist>
+</div>
+<div *ngIf="selectedAlbum && isEditStatus">
+    <app-edit-album [selectedAlbum]="selectedAlbum" [isEditStatus]="isEditStatus"
+        (editStatusChange)="onEditStatusChange($event)" (artistChange)="editAlbum($event)"></app-edit-album>
+</div>
+<div *ngIf="selectedTrack && isEditStatus">
+    <app-edit-track [selectedTrack]="selectedTrack" [isEditStatus]="isEditStatus"
+        (editStatusChange)="onEditStatusChange($event)" (trackChange)="editTrack($event)"></app-edit-track>
+</div>

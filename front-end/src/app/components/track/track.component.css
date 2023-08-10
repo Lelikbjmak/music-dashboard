@@ -1,0 +1,130 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+.track {
+    width: 800px;
+    margin-top: 25px;
+}
+
+.track-agenda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.track-agenda__image {
+    height: 350px;
+    box-shadow: 6px 3px 12px 8px rgba(255, 255, 255, 0.3);
+    transition-duration: 0.25s;
+}
+
+.track-agenda__image:hover {
+    box-shadow: 6px 3px 12px 12px rgba(198, 48, 49, 0.3);
+}
+
+.track-data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 45px;
+    justify-items: center;
+    align-items: first baseline;
+}
+
+.track-meta {
+    font-size: 25px;
+    font-family: REM;
+    font-weight: 200;
+    display: flex;
+}
+
+.track-meta i {
+    font-size: 60px;
+}
+
+.track-meta-unit {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: REM;
+    font-weight: 500;
+}
+
+.track-meta-unit__span {
+    font-family: Mulish;
+    color: rgb(181, 181, 181);
+    font-weight: 300;
+}
+
+.track__title {
+    font-family: REM;
+    font-weight: 600;
+    font-size: 36px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.track__creator {
+    margin-top: 10px;
+    font-family: REM;
+    font-weight: 400;
+    font-size: 24px;
+    color: grey;
+}
+
+.track-additional-button {
+    color: white;
+    font-style: italic;
+    background-color: transparent;
+    border: none;
+    font-family: Raleway;
+    font-size: 30px;
+    transition-duration: 0.25s;
+    font-weight: 400;
+}
+
+.track-additional-button:hover {
+    cursor: pointer;
+}
+
+.active {
+    color: #c63031;
+}
+
+.track-artist {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.track-artists {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 25px;
+}
+
+.track-artist__span {
+    font-size: 30px;
+    font-family: REM;
+}
+
+.track-artist__line {
+    border: 1px solid rgb(99, 98, 98);
+    margin-top: 10px;
+    width: 80%;
+}
+
+.track-album {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.track-album__span {
+    font-size: 30px;
+    font-family: REM;
+}

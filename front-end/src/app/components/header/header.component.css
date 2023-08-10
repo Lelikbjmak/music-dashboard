@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.app-nav__unit {
+    color: white;
+    margin-right: 25px;
+    text-decoration: none;
+    transition-duration: 0.25s;
+}
+
+.app-nav__unit:hover{
+    cursor: pointer;
+    color: #c63031;
+}

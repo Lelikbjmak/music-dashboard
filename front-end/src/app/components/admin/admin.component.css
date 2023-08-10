@@ -1,0 +1,104 @@
+.admin-manage-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.admin-manage-panel-data-selects__select {
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    font-family: Mulish;
+    font-size: 18px;
+    height: 35px;
+    width: 350px;
+}
+
+.admin-manage-panel-data-selects__select>option {
+    color: black;
+}
+
+.admin-manage-panel {
+    width: 1000px;
+    padding: 2%;
+}
+
+.admin-manage-panel__radio {
+    display: none;
+}
+
+.admin-manage-panel-label {
+    transition-duration: 0.25s;
+}
+
+.admin-manage-panel-label:hover {
+    cursor: pointer;
+}
+
+.admin-manage-panel-nav {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+}
+
+.admin-manage-panel-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    color: #c63031;
+}
+
+.admin-manage-panel-data__button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    font-family: Mulish;
+    font-size: 18px;
+    height: 35px;
+    width: 350px;
+}
+
+.admin-manage-panel-data-selects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-manage-panel-data-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    column-gap: 40px;
+}
+
+.admin-manage-panel-data__button {
+    transition-duration: 0.25s;
+}
+
+.admin-manage-panel-data__button:hover {
+    cursor: pointer;
+    border-bottom-color: #c63031;
+}
+
+.message {
+    font-family: Mulish;
+    color: gray;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+app-error {
+    align-self: center;
+    margin-bottom: 15px;
+}
+
+

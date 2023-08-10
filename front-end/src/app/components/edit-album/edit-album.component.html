@@ -1,0 +1,65 @@
+<div class="album-edit-container">
+    <div class="album-edit-agenda">
+        <div class="album-edit-agenda__name">{{selectedAlbum.name}}</div>
+        <a [href]="selectedAlbum.spotifyUri" target="_blank">
+            <img class="album-edit-agenda__image" [src]="selectedAlbum.spotifyIconUri" [alt]="selectedAlbum.name">
+        </a>
+        <div class="album-edit-form-unit" style="margin-top: 10px;">
+            <button class="album-edit-container__button" (click)="updateEditStatus()">Cancel</button>
+        </div>
+    </div>
+    <div class="album-edit-form-container">
+        <form [formGroup]="albumEditForm" class="album-edit-form">
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">ID:</label>
+                <br>
+                <input type="text" formControlName="id" class="album-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Name:</label>
+                <br>
+                <input type="text" formControlName="name" class="album-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Album type:</label>
+                <br>
+                <input type="text" formControlName="albumType" class="album-edit-form-unit__input">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Popularity:</label>
+                <br>
+                <input type="number" formControlName="popularity" class="album-edit-form-unit__input">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Total tracks:</label>
+                <br>
+                <input type="number" formControlName="totalTracks" class="album-edit-form-unit__input">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Realese date:</label>
+                <br>
+                <input type="date" formControlName="releaseDate" class="album-edit-form-unit__input">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Label:</label>
+                <br>
+                <input type="text" formControlName="label" class="album-edit-form-unit__input">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Spotify Icon URI:</label>
+                <br>
+                <input type="text" formControlName="spotifyIconUri" class="album-edit-form-unit__input">
+            </div>
+            <div class="album-edit-form-unit">
+                <label class="album-edit-form-unit__label">Spotify URI:</label>
+                <br>
+                <input type="text" formControlName="spotifyUri" class="album-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="album-edit-form-unit">
+                <button class="album-edit-container__button" (click)="updateAlbum()"
+                    [disabled]="albumEditForm.invalid">Save
+                    Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

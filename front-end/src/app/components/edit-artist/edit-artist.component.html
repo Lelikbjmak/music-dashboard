@@ -1,0 +1,50 @@
+<div class="artist-edit-container">
+    <div class="artist-edit-agenda">
+        <div class="artist-edit-agenda__name">{{selectedArtist.name}}</div>
+        <a [href]="selectedArtist.spotifyUri" target="_blank">
+            <img class="artist-edit-agenda__image" [src]="selectedArtist.spotifyIconUri" [alt]="selectedArtist.name">
+        </a>
+        <div class="artist-edit-form-unit" style="margin-top: 10px;">
+            <button class="artist-edit-container__button" (click)="updateEditStatus()">Cancel</button>
+        </div>
+    </div>
+    <div class="artist-edit-form-container">
+        <form [formGroup]="artistEditForm" class="artist-edit-form">
+            <div class="artist-edit-form-unit">
+                <label class="artist-edit-form-unit__label">ID:</label>
+                <br>
+                <input type="text" formControlName="id" class="artist-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="artist-edit-form-unit">
+                <label class="artist-edit-form-unit__label">Name:</label>
+                <br>
+                <input type="text" formControlName="name" class="artist-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="artist-edit-form-unit">
+                <label class="artist-edit-form-unit__label">Genres:</label>
+                <br>
+                <input type="text" formControlName="genres" class="artist-edit-form-unit__input">
+            </div>
+            <div class="artist-edit-form-unit">
+                <label class="artist-edit-form-unit__label">Popularity:</label>
+                <br>
+                <input type="number" formControlName="popularity" class="artist-edit-form-unit__input">
+            </div>
+            <div class="artist-edit-form-unit">
+                <label class="artist-edit-form-unit__label">Spotify Icon URI:</label>
+                <br>
+                <input type="text" formControlName="spotifyIconUri" class="artist-edit-form-unit__input">
+            </div>
+            <div class="artist-edit-form-unit">
+                <label class="artist-edit-form-unit__label">Spotify URI:</label>
+                <br>
+                <input type="text" formControlName="spotifyUri" class="artist-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="artist-edit-form-unit">
+                <button class="artist-edit-container__button" (click)="updateArtist()"
+                    [disabled]="artistEditForm.invalid">Save
+                    Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

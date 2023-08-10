@@ -1,0 +1,37 @@
+.album {
+   display: flex;
+   justify-content: center;
+   margin-top: 30px;
+}
+
+.album-data {
+    margin-left: 40px;
+    justify-self: end;
+}
+
+.album-data__name {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 35px;
+}
+
+.album-meta {
+    font-family: REM;
+    font-weight: 200;
+    margin-bottom: 2px;
+}
+
+.album-meta__span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.album__image {
+    width: 250px;
+    box-shadow: 6px 3px 8px 5px rgba(255, 255, 255, 0.3);
+    transition-duration: 0.25s;
+}
+
+.album__image:hover {
+    box-shadow: 7px 4px 8px 6px  rgba(198, 48, 49, 0.3);;
+}

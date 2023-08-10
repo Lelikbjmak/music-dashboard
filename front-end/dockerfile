@@ -1,0 +1,21 @@
+FROM node:lts as builder
+
+WORKDIR /front-end
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+FROM nginx:1.25.1
+
+COPY ./src/environments/environment.prod.ts /usr/share/nginx/html/src/environments/
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=builder /front-end/dist/front-end /usr/share/nginx/html
+
+EXPOSE 8090
+
+CMD ["nginx", "-g", "daemon off;"]

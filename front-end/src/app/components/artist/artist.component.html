@@ -1,0 +1,27 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@200;300;400;600&family=Barlow:wght@400;500&display=swap"
+    rel="stylesheet">
+
+<div class="artist">
+    <div class="artist__name">{{artist.name}}</div>
+    <a [href]="artist.spotifyUri" target="_blank">
+        <img class="artist__image" [src]="artist.spotifyIconUri" [alt]="artist.name">
+    </a>
+    <div class="artist__line"></div>
+    <div class="artist-meta">
+        <div class="artist-meta-unit">
+            <span class="artist-meta-unit__span">
+                Genres:
+            </span>
+            {{artist.genres.join(', ')}}
+        </div>
+        <div class="artist-meta-unit">
+            <span class="artist-meta-unit__span">
+                Popularity:
+            </span>
+            {{artist.popularity}}
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,65 @@
+.upload-form {
+    height: 300px;
+    width: 450px;
+    border: 3px solid white;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.upload-form__small {
+    font-family: Mulish;
+    color: grey;
+}
+
+.upload-form-unit {
+    margin-bottom: 20px;
+}
+
+.upload-form-unit__input::-webkit-file-upload-button {
+    display: none;
+}
+
+.upload-form-unit__input {
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    font-family: Mulish;
+    font-size: 18px;
+    height: 35px;
+    width: 350px;
+}
+
+.upload-form-unit__input:hover {
+    border-bottom-color: #c63031;
+    cursor: pointer;
+}
+
+.upload-form-unit__input::placeholder {
+    background-color: transparent;
+}
+
+.upload-form-unit__button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-family: Raleway;
+    font-size: large;
+    transition-duration: 0.25s;
+    font-weight: 600;
+}
+
+.upload-form-unit__button:disabled {
+    color: grey;
+}
+
+.upload-form-unit__button:not([disabled]):hover {
+    cursor: pointer;
+    color: #c63031;
+}

@@ -1,0 +1,78 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@200;300;400;600&family=Barlow:wght@400;500&display=swap"
+    rel="stylesheet">
+
+<div class="track">
+    <div class="track-agenda">
+        <a class="track-agenda-reference" [href]="track.spotifyUri" target="_blank">
+            <img class="track-agenda__image" [src]="track.spotifyIconUri" [alt]="track.spotifyIconUri">
+        </a>
+        <div class="track__title">{{track.title}}</div>
+        <div class="track__creator">{{getCreatorNameList()}}</div>
+    </div>
+    <div class="track-data">
+        <div class="track-meta">
+            <i class="fa-solid fa-compact-disc"></i>
+            <div class="track-meta-unit">
+                <span class="track-meta-unit__span">
+                    Disc
+                </span>
+                {{track.discNumber}}
+            </div>
+        </div>
+        <div class="track-meta">
+            <i class="fa-regular fa-clock"></i>
+            <div class="track-meta-unit">
+                <span class="track-meta-unit__span">
+                    Duration
+                </span>
+                {{track.durationMs | time}}
+            </div>
+        </div>
+        <div class="track-meta">
+            <i class="fa-solid fa-hashtag"></i>
+            <div class="track-meta-unit">
+                <span class="track-meta-unit__span">
+                    Track number
+                </span>
+                {{track.trackNumber}}
+            </div>
+        </div>
+        <div class="track-meta">
+            <i class="fa-solid fa-fire"></i>
+            <div class="track-meta-unit">
+                <span class="track-meta-unit__span">
+                    Popularity
+                </span>
+                {{track.popularity}}
+            </div>
+        </div>
+    </div>
+    <div class="track-artist">
+        <div>
+            <span class="track-artist__span">Artist:</span>
+            <button [ngClass]="{'track-additional-button': true, 'active': artistDetails}"
+                (click)="artistDetails = !artistDetails"> {{ artistDetails ?
+                'Hide' : 'Show'}} </button>
+        </div>
+        <div class="track-artist__line"></div>
+    </div>
+    <div *ngIf="artistDetails" class="track-artists">
+        <app-artist *ngFor="let artist of track.artistList" [artist]="artist"></app-artist>
+    </div>
+    <div class="track-album">
+        <div>
+            <span class="track-album__span">Album:</span>
+            <button [ngClass]="{'track-additional-button': true, 'active': albumDetails}"
+                (click)="albumDetails = !albumDetails"> {{ albumDetails ? 'Hide'
+                : 'Show'}} </button>
+        </div>
+        <div class="track-artist__line"></div>
+    </div>
+    <div *ngIf="albumDetails" class="track-albums">
+        <br>
+        <app-album [album]="track.album"></app-album>
+        <br>
+    </div>
+</div>

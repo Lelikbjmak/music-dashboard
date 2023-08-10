@@ -1,0 +1,59 @@
+.search-track-form {
+    width: 800px;
+    border: 3px solid white;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search-track-form__small {
+    font-family: Mulish;
+    color: gray;
+}
+
+.search-track-form-unit {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.search-track-form-unit__input {
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    font-family: Mulish;
+    font-size: 18px;
+    height: 35px;
+    width: 350px;
+}
+
+.search-track-form-unit__input:focus {
+    border-bottom-color: #c63031;
+}
+
+.search-track-form-unit__input::placeholder {
+    background-color: transparent;
+}
+
+.search-track-form-unit__button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-family: Raleway;
+    font-size: large;
+    transition-duration: 0.25s;
+    font-weight: 600;
+}
+
+.search-track-form-unit__button:disabled {
+    color: grey;
+}
+
+.search-track-form-unit__button:not([disabled]):hover {
+    cursor: pointer;
+    color: #c63031;
+}

@@ -1,0 +1,46 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600&family=REM&family=Raleway&family=Syncopate&display=swap"
+    rel="stylesheet">
+
+<form class="sing-in-form" (ngSubmit)="signIn()" [formGroup]="signInForm">
+    <small class="response-message" *ngIf="signInMessage !== ''" [textContent]="signInMessage"></small>
+    <app-error></app-error>
+    <div class="sign-in-unit">
+        <input class="sign-in-unit__input" type="text" name="username" formControlName="username" placeholder="Username"
+            maxlength="25" />
+        <br>
+        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+            <div *ngIf="username?.errors"
+                [ngClass]="{ 'sign-in-unit__message': true, 'error': username?.errors, 'correct': username?.valid }">
+                <small *ngIf="username?.errors?.required">
+                    Username is required
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="sign-in-unit">
+        <input class="sign-in-unit__input" type="{{ togglePassword ? 'text' : 'password' }}" name="password"
+            formControlName="password" placeholder="Password" maxlength="25" />
+        <i class="toggle-password" [ngClass]="togglePassword ? 'fa-regular fa-eye': 'fa-regular fa-eye-slash'"
+            (click)="togglePasswordVisibility()"></i>
+        <br>
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            <div *ngIf="password?.errors"
+                [ngClass]="{ 'sign-in-unit__message': true, 'error': password?.errors, 'correct': password?.valid }">
+                <small *ngIf="password?.errors?.required">
+                    Password is required
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="sign-in-unit">
+        <button class="sign-in-unit__button" [disabled]="signInForm.invalid">Sign In</button>
+    </div>
+    <div class="sign-up">
+        <span class="sign-up__text">Don't have an account </span>
+        <a class="sign-up__reference" routerLink="/sign-up">Sing Up</a>
+    </div>
+    <app-progress-loader [isLoading]="isLoading"></app-progress-loader>
+</form>

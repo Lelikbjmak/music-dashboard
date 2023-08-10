@@ -1,0 +1,100 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+.sing-up-form {
+    height: 425px;
+    width: 450px;
+    border: 3px solid white;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.response-message {
+    font-family: Mulish;
+}
+
+.sign-up-unit {
+    margin-bottom: 20px;
+}
+
+.sign-up-unit__input {
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    font-family: Mulish;
+    font-size: 17px;
+    height: 35px;
+    width: 325px;
+}
+
+.sign-up-unit__input:focus {
+    border-bottom-color: #c63031;
+}
+
+.sign-up-unit__input::placeholder {
+    background-color: transparent;
+}
+
+.sign-up-unit__message {
+    font-family: REM;
+}
+
+.sign-up-unit__button {
+    background-color: transparent;
+    border: none;
+    font-family: Raleway;
+    font-size: large;
+    font-weight: 600;
+    transition-duration: 0.25s;
+}
+
+.sign-up-unit__button:disabled {
+    color: grey;
+}
+
+.sign-up-unit__button:not([disabled]):hover {
+    cursor: pointer;
+    color: #c63031;
+}
+
+.error {
+    color: rgb(190, 0, 0);
+}
+
+.valid {
+    border-bottom-color: rgb(71, 214, 0);
+}
+
+.correct {
+    color: rgb(71, 214, 0);
+}
+
+.sign-in__text {
+    font-family: Mulish;
+}
+
+.sign-in__reference {
+    color: white;
+    text-decoration: none;
+    font-family: Raleway;
+    font-size: large;
+    transition-duration: 0.25s;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.sign-in__reference:hover {
+    cursor: pointer;
+    color: #c63031;
+}
+
+.toggle-password {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -25px;
+}

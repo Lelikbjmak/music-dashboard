@@ -1,0 +1,15 @@
+<form class="search-track-form" [formGroup]="searchTrackForm" (ngSubmit)="submit()">
+    <br>
+    <app-error></app-error>
+    <div class="search-track-form-unit">
+        <input class="search-track-form-unit__input" type="text" placeholder="Spotify Id" formControlName="id">
+    </div>
+    <div class="search-track-form-unit">
+        <button type="submit" class="search-track-form-unit__button"
+            [disabled]="searchTrackForm.invalid">Search</button>
+    </div>
+    <div *ngIf="isPresent">
+        <app-track [track]="track"></app-track>
+    </div>
+    <app-progress-loader [isLoading]="isLoading"></app-progress-loader>
+</form>

@@ -1,0 +1,25 @@
+.route-outlet-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 1000px;
+    overflow: auto;
+}
+
+.route-outlet-container {
+    height: 500px;
+    overflow: auto;
+}
+
+.route-outlet-container::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.route-outlet-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.route-outlet-container::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}

@@ -1,0 +1,71 @@
+<div class="track-edit-container">
+    <div class="track-edit-agenda">
+        <div class="track-edit-agenda__name">
+            <div>
+                {{selectedTrack.title}}
+            </div>
+            <div>
+                <small *ngFor="let artist of selectedTrack.artistList; let isLast=last">
+                    {{ artist.name }}{{ isLast ? '' : ', ' }}
+                </small>
+            </div>
+        </div>
+
+        <a [href]="selectedTrack.spotifyUri" target="_blank">
+            <img class="track-edit-agenda__image" [src]="selectedTrack.spotifyIconUri" [alt]="selectedTrack.title">
+        </a>
+        <div class="track-edit-form-unit" style="margin-top: 10px;">
+            <button class="track-edit-container__button" (click)="updateEditStatus()">Cancel</button>
+        </div>
+    </div>
+    <div class="track-edit-form-container">
+        <form [formGroup]="trackEditForm" class="track-edit-form">
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">ID:</label>
+                <br>
+                <input type="text" formControlName="id" class="track-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">Title:</label>
+                <br>
+                <input type="text" formControlName="title" class="track-edit-form-unit__input" [readonly]="true">
+            </div>
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">Disc number:</label>
+                <br>
+                <input type="number" formControlName="discNumber" class="track-edit-form-unit__input">
+            </div>
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">Track number:</label>
+                <br>
+                <input type="number" formControlName="trackNumber" class="track-edit-form-unit__input">
+            </div>
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">Duration (ms):</label>
+                <br>
+                <input type="number" formControlName="durationMs" class="track-edit-form-unit__input">
+            </div>
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">Popularity:</label>
+                <br>
+                <input type="number" formControlName="popularity" class="track-edit-form-unit__input">
+            </div>
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">Spotify Icon URI:</label>
+                <br>
+                <input type="text" formControlName="spotifyIconUri" class="track-edit-form-unit__input">
+            </div>
+            <div class="track-edit-form-unit">
+                <label class="track-edit-form-unit__label">Spotify URI:</label>
+                <br>
+                <input type="text" formControlName="spotifyUri" class="track-edit-form-unit__input" [readonly]="true">
+            </div>
+            <!-- TODO: How to implement track and Album change -->
+            <div class="track-edit-form-unit">
+                <button class="track-edit-container__button" (click)="updateTrack()"
+                    [disabled]="trackEditForm.invalid">Save
+                    Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

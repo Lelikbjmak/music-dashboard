@@ -1,0 +1,92 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600&family=REM&family=Raleway&family=Syncopate&display=swap"
+    rel="stylesheet">
+
+<form class="sing-up-form" (ngSubmit)="signUp()" [formGroup]="signUpForm">
+    <small [ngClass]="{'response-message': true, 'error': isErrorResponse}" [textContent]="signUpMessage"></small>
+    <div class="sign-up-unit">
+        <input class="sign-up-unit__input" type="text" name="username" placeholder="Username" maxlength="25"
+            formControlName="username" />
+        <br>
+        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+            <div *ngIf="username?.errors"
+                [ngClass]="{ 'sign-up-unit__message': true, 'error': username?.errors, 'correct': username?.valid }">
+                <small *ngIf="username?.errors?.required">
+                    Username is required
+                </small>
+                <small *ngIf="username?.errors?.pattern">
+                    Username must be between 5 and 25 characters
+                    <br>
+                    and contain only word characters
+                </small>
+                <small *ngIf="username?.errors?.server">
+                    {{usernameServerErrorMessage}}
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="sign-up-unit">
+        <input class="sign-up-unit__input" type="email" name="email" placeholder="Email" formControlName="email" />
+        <br>
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+            <div *ngIf="email?.errors"
+                [ngClass]="{ 'sign-up-unit__message': true, 'error': email?.errors, 'correct': email?.valid }">
+                <small *ngIf="email?.errors?.required">
+                    Email is required
+                </small>
+                <small *ngIf="email?.errors?.email">
+                    Email must be valid addres
+                </small>
+                <small *ngIf="email?.errors?.server">
+                    {{emailServerErrorMessage}}
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="sign-up-unit">
+        <input class="sign-up-unit__input" type="{{ togglePassword ? 'text' : 'password' }}" name="password"
+            formControlName="password" placeholder="Password" maxlength="25" />
+        <i class="toggle-password" [ngClass]="togglePassword ? 'fa-regular fa-eye': 'fa-regular fa-eye-slash'"
+            (click)="togglePasswordVisibility()"></i>
+        <br>
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            <div *ngIf="password?.errors"
+                [ngClass]="{ 'sign-up-unit__message': true, 'error': password?.errors, 'correct': password?.valid }">
+                <small *ngIf="password?.errors?.required">
+                    Password is required
+                </small>
+                <small *ngIf="password?.errors?.pattern">
+                    Password must be between 8 and 25 characters,
+                    <br>
+                    contain at least 1 Capital letter, 1 digit
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="sign-up-unit">
+        <input class="sign-up-unit__input" type="{{ toggleConfirmedPassword ? 'text' : 'password' }}"
+            name="confirmedPassword" formControlName="confirmedPassword" placeholder="Confirm password"
+            maxlength="25" />
+        <i class="toggle-password" [ngClass]="toggleConfirmedPassword ? 'fa-regular fa-eye': 'fa-regular fa-eye-slash'"
+            (click)="toggleConfirmedPasswordVisibility()"></i>
+        <br>
+        <div *ngIf="confirmedPasword?.invalid && (confirmedPasword?.dirty || confirmedPasword?.touched)">
+            <div *ngIf="confirmedPasword?.errors"
+                [ngClass]="{ 'sign-up-unit__message': true, 'error': confirmedPasword?.errors, 'correct': confirmedPasword?.valid }">
+                <small *ngIf="confirmedPasword?.errors?.['mismatch']">
+                    Password doesn't match
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="sign-up-unit">
+        <button class="sign-up-unit__button" [disabled]="signUpForm.invalid">Sign Up</button>
+    </div>
+    <div class="sign-in">
+        <span class="sign-in__text">Already have an account </span>
+        <a class="sign-in__reference" routerLink="/sign-in">Sing In</a>
+    </div>
+    <app-progress-loader [isLoading]="isLoading"></app-progress-loader>
+</form>
