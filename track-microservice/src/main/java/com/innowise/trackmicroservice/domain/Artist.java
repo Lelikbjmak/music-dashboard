@@ -28,6 +28,8 @@ public class Artist {
 
     private int popularity;
 
+    private String spotifyIconUri;
+
     private String spotifyUri;
 
     @CreatedDate

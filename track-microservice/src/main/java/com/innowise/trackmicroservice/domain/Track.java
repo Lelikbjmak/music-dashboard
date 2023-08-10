@@ -31,6 +31,8 @@ public class Track {
 
     private String spotifyUri;
 
+    private String spotifyIconUri;
+
     private int trackNumber;
 
     private int popularity;

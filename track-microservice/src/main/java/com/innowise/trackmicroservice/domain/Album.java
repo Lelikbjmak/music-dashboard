@@ -1,6 +1,5 @@
 package com.innowise.trackmicroservice.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.innowise.spotifycommon.dto.enumeration.AlbumTypeEnum;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,7 +18,6 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "albums")
@@ -40,6 +38,8 @@ public class Album {
     private Date releaseDate;
 
     private int totalTracks;
+
+    private String spotifyIconUri;
 
     private String spotifyUri;
 

@@ -35,6 +35,8 @@ public class AlbumDto {
 
     private int totalTracks;
 
+    private String spotifyIconUri;
+
     private String spotifyUri;
 
     private String label;

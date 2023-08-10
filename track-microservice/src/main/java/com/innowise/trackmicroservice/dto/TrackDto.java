@@ -21,6 +21,8 @@ public record TrackDto(
 
         String spotifyUri,
 
+        String spotifyIconUri,
+
         Integer trackNumber,
 
         Integer popularity,

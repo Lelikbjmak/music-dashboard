@@ -19,6 +19,8 @@ public record ArtistDto(
 
         Integer popularity,
 
+        String spotifyIconUri,
+
         String spotifyUri
 
 ) {
